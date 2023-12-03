@@ -8,7 +8,7 @@ format: html
 
 ```{python}
 import pathlib
-from aocpy.aoc2023 import day01
+from aocpy.aoc2023 import day01, day02
 dta_dir_2023 = pathlib.Path('.') / 'data' / '2023'
 ```
 
@@ -30,3 +30,24 @@ day01.calc_calibration_sum(lines)
 day01.calc_pat_calibration_sum(lines)
 ```
 
+
+## Day 2
+
+### Part a
+
+```{python}
+lines = day02.readlines(dta_dir_2023 / 'day02a.txt')
+games = day02.parse_games(lines)
+day02.calc_possible_02a(
+    games
+    , {
+        'red': 12
+        , 'green': 13
+        , 'blue': 14})
+```
+
+### Part b
+
+```{python}
+day02.calc_games_power(games)
+```
