@@ -62,6 +62,7 @@ def find_firstandlast_re(
 
 def find_firstandlast_pats(v: list[str], subpats: dict[str, int]) -> list[int]:
     patlist = [k for k in subpats.keys()]
+    # (?= lookahead allows finding overlapped matches
     pat_core_pat = '(?=(' + '|'.join(patlist) + '))'
     pat_core_re = re.compile(pat_core_pat)
     return [
