@@ -44,13 +44,3 @@ def test_calc_pat_calibration_sum(testdta_01b):
     ans = day01.calc_pat_calibration_sum(testdta_01b)
     assert ans == 281
 
-
-def test_calc_pat_calibration_sum2():
-    import pathlib
-    dta_dir_2023 = pathlib.Path('.') / 'data' / '2023'
-    with open(dta_dir_2023 / 'day01a.txt') as f:
-        lines = f.readlines()
-    lines = [s.strip() for s in lines]
-    ans = day01.calc_pat_calibration_sum(lines)
-    assert False
-
