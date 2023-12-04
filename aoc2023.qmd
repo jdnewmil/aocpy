@@ -8,7 +8,7 @@ format: html
 
 ```{python}
 import pathlib
-from aocpy.aoc2023 import day01, day02, day03
+from aocpy.aoc2023 import day01, day02, day03, day04
 dta_dir_2023 = pathlib.Path('.') / 'data' / '2023'
 ```
 
@@ -70,3 +70,51 @@ gr_dict = day03.calc_gear_ratios(lines)
 day03.calc_gear_ratios_sum(gr_dict)
 ```
 
+
+## Day 4
+
+### Part a
+
+```{python}
+lines = day02.readlines(dta_dir_2023 / 'day04a.txt')
+cards = day04.parse_cards(lines)
+day04.calc_points(cards)
+```
+
+
+```{python}
+def rle(v: list) -> list[list]:
+    last = v[0]
+    vals = []
+    cts = []
+    ctr = 1
+    for vv in v[1:]:
+        if vv == last:
+            ctr += 1
+        else:
+            vals.append(last)
+            cts.append(ctr)
+            last = vv
+            ctr = 1
+    vals.append(last)
+    cts.append(ctr)
+    return vals, cts
+
+
+def diff(v: list[int]) -> list[int]:
+    last = v[0]
+    result = [0] * (len(v) - 1)
+    for i, vv in enumerate(v[1:]):
+        result[i] = vv - last
+        last = vv
+    return result
+
+rle(diff([card[0] for card in cards]))
+```
+
+### Part b
+
+```{python}
+matches = day04.count_matches(cards)
+sum(day04.count_copies(matches))
+```
