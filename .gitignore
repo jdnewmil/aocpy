@@ -159,6 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-aoc2022.html
-aoc2022_files
-data
+*.html
+data/
+aoc*_files/
+.vscode/
