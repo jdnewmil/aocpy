@@ -1,0 +1,152 @@
+---
+title: "AOC2022"
+format: html
+---
+
+
+# 2022
+
+```{python}
+import pathlib
+from aocpy.aoc2022 import day01, day02
+dta_dir_2022 = pathlib.Path('.') / 'data' / '2022'
+```
+
+## Day 1
+
+### Part a
+
+
+```{python}
+dta = day01.read_elf_loads(dta_dir_2022 / 'day01a.txt')
+day01.find_max_load(dta)
+```
+
+### Part b
+
+```{python}
+dta = day01.read_elf_loads(dta_dir_2022 / 'day01a.txt')
+ans01b_all = day01.find_max_load3(dta)
+sum([v[0] for v in ans01b_all])
+```
+
+## Day 2
+
+### Part a
+
+
+```{dot}
+digraph day02 {
+node [shape=box]
+day02a_txt [label="day02a.txt"]
+gen
+node [shape=oval]
+day02a_txt -> read_rps_strategy
+read_rps_strategy -> gen
+gen -> gen_rps_results
+}
+```
+
+```{dot}
+digraph gen_rps_results {
+node [shape=box]
+{
+    rank=same
+    rps_strategy
+}
+{
+    rank=same
+    rps_order[style=dashed]
+}
+{
+    rank=same
+    result
+}
+subgraph cluster_0 {
+    label=gen_rps_results
+    graph [style=rounded]
+    build_rps_dict [shape=oval]
+    decode_opponent [shape=oval]
+    decode_self [shape=oval]
+    calc_score [shape=oval]
+    rps_order -> build_rps_dict
+    rps_order -> rps_to_int
+    build_rps_dict -> rps_dict
+    rps_strategy -> decode_opponent
+    rps_strategy -> decode_self
+    rps_dict -> calc_score
+    rps_to_int -> calc_score
+    decode_opponent -> calc_score
+    decode_self -> calc_score
+}
+calc_score -> result
+}
+```
+
+
+```{dot}
+digraph day02 {
+node [shape=box]
+day02a_txt [label="day02a.txt"]
+gen
+{
+    rank=same
+    self_code
+    opponent_code
+    rps_order
+}
+{
+    rank=same
+    result
+}
+node [shape=oval]
+day02a_txt -> read_rps_strategy
+read_rps_strategy -> gen
+gen
+subgraph cluster_0 {
+    graph[style=rounded, shape=oval]
+    {
+        rank=same
+        rps_dict [shape=box]
+    }
+    subgraph cluster_1 {
+        label=build_rps_dict
+        rps_to_int [shape=box]
+        rps_order -> rps_dict
+        rps_order -> rps_to_int
+        rps_to_int -> result
+        rps_dict_decode_opponent [shape=box, label=decode_opponent]
+        rps_dict_decode_self [shape=box, label=decode_self]
+        rps_order -> rps_dict_decode_opponent
+        rps_order -> rps_dict_decode_self
+        self_code -> rps_dict_decode_self
+        opponent_code -> rps_dict_decode_opponent
+        rps_dict_decode_opponent -> rps_dict
+        rps_dict_decode_self -> rps_dict
+    }
+    self_code -> decode_self
+    opponent_code -> decode_opponent
+    decode_opponent -> cmp
+    decode_opponent -> result
+    decode_self -> cmp
+    decode_self -> result
+    cmp -> rps_dict
+    rps_dict -> result
+    label=gen_rps_results
+}
+gen -> decode_opponent
+gen -> decode_self
+}
+```
+
+
+
+```{python}
+gen = day02.read_rps_strategy(dta_dir_2022 / 'day02a.txt')
+sum(day02.gen_rps_results(gen))
+```
+
+### Part b
+
+```{python}
+```

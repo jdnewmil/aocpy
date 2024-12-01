@@ -1,0 +1,32 @@
+---
+title: "AOC2024"
+format: html
+---
+
+
+# 2024
+
+```{python}
+import pathlib
+import pandas as pd
+from aocpy.aoc2024 import day01
+dta_dir = pathlib.Path('data') / '2024'
+```
+
+## Day 1
+
+### Part a
+
+
+```{python}
+dta = pd.read_csv(dta_dir / 'day01a.txt', sep=r"\s+", names=['L1', 'L2'])
+slists = day01.pairsort1(dta['L1'].tolist(), dta['L2'].tolist())
+sum(day01.diff1(*slists))
+```
+
+### Part b
+
+```{python}
+sum(day01.similarity1(dta['L1'].tolist(), dta['L2'].tolist()))
+```
+
