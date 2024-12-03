@@ -9,7 +9,7 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01
+from aocpy.aoc2024 import day01, day02
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -30,3 +30,35 @@ sum(day01.diff1(*slists))
 sum(day01.similarity1(dta['L1'].tolist(), dta['L2'].tolist()))
 ```
 
+## Day 2
+
+### Part a
+
+```{python}
+def parse_int_row(ln: str, sep=' ') -> list[int]:
+    sa = ln.split(sep)
+    return [
+        int(e)
+        for e in sa]
+
+
+def read_int_rows(fname: str) -> list[list[int]]:
+    with open(fname, 'r') as f:
+        sl = f.readlines()
+    return [
+        parse_int_row(ln.strip())
+        for ln in sl]
+```
+
+
+```{python}
+dta = read_int_rows(dta_dir / 'day02a.txt')
+safes = [day02.is_safe(v) for v in dta]
+pd.Series(safes).sum()
+```
+
+
+```{python}
+safes2 = [day02.is_anydrop_safe(v) for v in dta]
+pd.Series(safes2).sum()
+```
