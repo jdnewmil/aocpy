@@ -9,7 +9,7 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01, day02, day03, day04
+from aocpy.aoc2024 import day01, day02, day03, day04, day05
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -79,4 +79,19 @@ day04.count_day04a(lns)
 
 ```{python}
 day04.count_day04b(lns)
+```
+
+## Day 5
+
+### Part a
+
+
+```{python}
+rules, updates = day05.read_rules_updates(dta_dir / 'day05a.txt')
+day05.calc_day05a(rules, updates)
+```
+
+
+```{python}
+day05.calc_day05b(rules, updates)
 ```
