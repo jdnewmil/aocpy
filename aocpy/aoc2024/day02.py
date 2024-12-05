@@ -59,3 +59,18 @@ def is_anydrop_safe(v: list[int]) -> bool:
         if is_safe(v0):
             return True
     return False
+
+
+def parse_int_row(ln: str, sep=' ') -> list[int]:
+    sa = ln.split(sep)
+    return [
+        int(e)
+        for e in sa]
+
+
+def read_int_rows(fname: str) -> list[list[int]]:
+    with open(fname, 'r') as f:
+        sl = f.readlines()
+    return [
+        parse_int_row(ln.strip())
+        for ln in sl]

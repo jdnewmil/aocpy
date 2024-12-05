@@ -9,7 +9,7 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01, day02, day03
+from aocpy.aoc2024 import day01, day02, day03, day04
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -34,25 +34,9 @@ sum(day01.similarity1(dta['L1'].tolist(), dta['L2'].tolist()))
 
 ### Part a
 
-```{python}
-def parse_int_row(ln: str, sep=' ') -> list[int]:
-    sa = ln.split(sep)
-    return [
-        int(e)
-        for e in sa]
-
-
-def read_int_rows(fname: str) -> list[list[int]]:
-    with open(fname, 'r') as f:
-        sl = f.readlines()
-    return [
-        parse_int_row(ln.strip())
-        for ln in sl]
-```
-
 
 ```{python}
-dta = read_int_rows(dta_dir / 'day02a.txt')
+dta = day02.read_int_rows(dta_dir / 'day02a.txt')
 safes = [day02.is_safe(v) for v in dta]
 pd.Series(safes).sum()
 ```
@@ -68,19 +52,8 @@ pd.Series(safes2).sum()
 
 ### Part a
 
-
 ```{python}
-def read_lines(fname: str) -> list[list[int]]:
-    with open(fname, 'r') as f:
-        sl = f.readlines()
-    return [
-        ln.strip()
-        for ln in sl]
-```
-
-
-```{python}
-lns = read_lines(dta_dir / 'day03a.txt')
+lns = day03.read_lines(dta_dir / 'day03a.txt')
 dta03 = ''.join(lns)
 sum(day03.get_values_day03a(dta03))
 ```
@@ -92,3 +65,18 @@ sum(day03.get_values_day03a(dta03))
 day03.calc_day03b(day03.get_ops_day03a(dta03, ['mul', 'do', "don't"]))
 ```
 
+
+## Day 4
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day04a.txt')
+day04.count_day04a(lns)
+```
+
+### Part b
+
+```{python}
+day04.count_day04b(lns)
+```

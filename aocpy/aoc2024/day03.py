@@ -90,6 +90,15 @@ def get_ops_day03a(ln: str, op_list: list[str]) -> list[Op2]:
         op
         for pre, op, post in Op_Parse_Iter(ln, op_list)]
 
+
 def calc_day03b(op_list: list[Op2]) -> int:
     cpu = CPU2()
     return sum(cpu.run(op_list=op_list))
+
+
+def read_lines(fname: str) -> list[str]:
+    with open(fname, 'r') as f:
+        sl = f.readlines()
+    return [
+        ln.strip()
+        for ln in sl]
