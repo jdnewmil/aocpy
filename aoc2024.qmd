@@ -9,7 +9,7 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01, day02, day03, day04, day05
+from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -91,7 +91,25 @@ rules, updates = day05.read_rules_updates(dta_dir / 'day05a.txt')
 day05.calc_day05a(rules, updates)
 ```
 
+### Part b
 
 ```{python}
 day05.calc_day05b(rules, updates)
+```
+
+## Day 6
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day06a.txt')
+guard_initial_loc = day06.find_guard(lns)
+trail = day06.map_guard_trail(lns, guard_initial_loc) # type: ignore
+len(day06.get_positions(trail_set=trail))
+```
+
+### Part b
+
+```{python}
+len(day06.find_loop_positions(lns, guard_initial_loc))
 ```
