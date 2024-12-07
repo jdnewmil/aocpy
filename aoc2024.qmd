@@ -9,7 +9,7 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06
+from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06, day07
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -112,4 +112,27 @@ len(day06.get_positions(trail_set=trail))
 
 ```{python}
 len(day06.find_loop_positions(lns, guard_initial_loc))
+```
+
+## Day 7
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day07a.txt')
+eqn_values = day07.parse_all_eqn_values(lns)
+opset = {
+    '*': day07.mul
+    , '+': day07.plus}
+day07.calc_day07a(eqn_values=eqn_values, opset=opset)
+```
+
+### Part b
+
+```{python}
+opset_b = {
+    '*': day07.mul
+    , '+': day07.plus
+    , '||': day07.concat}
+day07.calc_day07a(eqn_values=eqn_values, opset=opset_b)
 ```
