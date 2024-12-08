@@ -9,7 +9,8 @@ format: html
 ```{python}
 import pathlib
 import pandas as pd
-from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06, day07
+from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06, day07 \
+    , day08
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -135,4 +136,21 @@ opset_b = {
     , '+': day07.plus
     , '||': day07.concat}
 day07.calc_day07a(eqn_values=eqn_values, opset=opset_b)
+```
+
+## Day 8
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day08a.txt')
+xnodes = day08.parse_trans_map(lns)
+bounds = (len(lns[0]), len(lns))
+day08.calc_day08a(xnodes=xnodes, bounds=bounds)
+```
+
+### Part b
+
+```{python}
+day08.calc_day08b(xnodes=xnodes, bounds=bounds)
 ```
