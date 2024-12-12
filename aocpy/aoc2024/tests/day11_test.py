@@ -34,14 +34,12 @@ def test_day11b(sample11_1, sample11_2):
     stones2result = day11.blinkdsn(stones2d, 25)
     assert 55312 == day11.count_stone_blinkd(stones2result)
 
-def test_lookee(sample11_2):
+def test_agreement(sample11_2):
     stones2 = day11.parse_stones('0')
     stones2d = day11.to_stone_blinkd(stones2)
     for i in range(10):
         stones2 = day11.blink(stones2)
-        print(stones2)
-        print(day11.to_stone_blinkd(stones2))
+        stones2a = day11.to_stone_blinkd(stones2)
         stones2d = day11.blinkds(stones2d)
-        print(stones2d)
-    assert True
+        assert stones2d == stones2a
     
