@@ -8,9 +8,11 @@ format: html
 
 ```{python}
 import pathlib
+import time
+import timeit
 import pandas as pd
 from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06, day07 \
-    , day08, day09, day10, day11, day12, day13
+    , day08, day09, day10, day11, day12, day13, day14
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -223,4 +225,32 @@ day13.calc_day13a(lns)
 
 ```{python}
 day13.calc_day13b(lns)
+```
+
+## Day 14
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day14a.txt')
+field_dim = day14.IntVec(value=(101, 103))
+day14.calc_day14a(lns, field_dim)
+```
+
+```{python}
+timeit.timeit(lambda: day14.calc_day14a(lns, field_dim), number=10) / 10
+```
+
+### Part b
+
+```{python}
+tol = 150
+rlist = day14.parse_robots_data(lns)
+timeit.timeit(lambda: day14.do_day14b((0, rlist), field_dim=field_dim, tolerance=tol), number=1)
+```
+
+
+```{python}
+for i in range(3):
+    result = day14.do_day14b(result, field_dim=field_dim, tolerance=tol)
 ```
