@@ -10,7 +10,7 @@ format: html
 import pathlib
 import pandas as pd
 from aocpy.aoc2024 import day01, day02, day03, day04, day05, day06, day07 \
-    , day08, day09, day10, day11, day12
+    , day08, day09, day10, day11, day12, day13
 dta_dir = pathlib.Path('data') / '2024'
 ```
 
@@ -208,4 +208,19 @@ day11.calc_day11b(lns[0], n=75)
 ```{python}
 lns = day03.read_lines(dta_dir / 'day12a.txt')
 day12.calc_day12a(lns)
+```
+
+## Day 13
+
+### Part a
+
+```{python}
+lns = day03.read_lines(dta_dir / 'day13a.txt')
+day13.calc_day13a(lns)
+```
+
+### Part b
+
+```{python}
+day13.calc_day13b(lns)
 ```
